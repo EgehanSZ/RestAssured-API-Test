@@ -11,21 +11,15 @@ import static org.hamcrest.Matchers.*;
 
 public class SampleApiTest {
 
-    @BeforeClass
-    public static void setup() {
-        // Temel URI tanımı
-        RestAssured.baseURI = "http://localhost:3000";
-    }
 
-    // -------------------- GET İsteği Testi -------------------- //
     @Test
     public void testGetPostById() {
-        String validId = "681d349ce90079ab5440875f"; // Buraya veritabanındaki gerçek bir _id yazılmalı
+        String validId = "681d349ce90079ab5440875f";
 
         Response response =
                 given().
                         baseUri("http://localhost:3000").
-                        port(3000). // Projen hangi portta çalışıyorsa burayı ayarla
+                        port(3000).
                         contentType(ContentType.JSON).
                         when().
                         get("/listings/" + validId).
@@ -33,8 +27,8 @@ public class SampleApiTest {
                         assertThat().
                         statusCode(200).
                         contentType(ContentType.JSON).
-                        body("_id", equalTo(validId)). // ObjectId eşleşmesi için kontrol
-                        body("baslik", notNullValue()). // Örnek bir alan
+                        body("_id", equalTo(validId)).
+                        body("baslik", notNullValue()).
                         extract().response();
 
         long responseTime = response.time();
@@ -47,7 +41,6 @@ public class SampleApiTest {
         assert !responseBody.isEmpty() : "Yanıt boş geldi!";
     }
 
-    // -------------------- POST İsteği Testi -------------------- //
     @Test
     public void testCreatePost() {
         String requestBody = """
@@ -61,7 +54,7 @@ public class SampleApiTest {
         Response response =
                 given().
                         baseUri("http://localhost:3000").
-                        port(3000). // Projen hangi portta çalışıyorsa burayı güncelle
+                        port(3000).
                         contentType(ContentType.JSON).
                         body(requestBody).
                         when().
