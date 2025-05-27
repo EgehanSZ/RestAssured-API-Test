@@ -62,8 +62,8 @@ veya
 
 ```json
 {
-  "kullaniciId": "38443790974",
-  "sifre": "ege"
+  "kullaniciId": "xxxxxxxxxxx",
+  "sifre": "xxx"
 }
 ```
 
