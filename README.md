@@ -27,8 +27,8 @@ Her iki test de:
 
 ### 1. Projeyi klonlayın:
 ```bash
-git clone https://github.com/kullaniciadi/restassured-api-testing.git
-cd restassured-api-testing
+git clone https://github.com/EgehanSZ/RestAssured-API-Test.git
+cd RestAssured-API-Test
 ```
 
 ### 2. Bağımlılıkları yükleyin
