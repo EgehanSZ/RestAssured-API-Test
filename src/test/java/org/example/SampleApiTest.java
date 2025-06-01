@@ -6,6 +6,8 @@ import io.restassured.response.Response;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -29,6 +31,7 @@ public class SampleApiTest {
                         contentType(ContentType.JSON).
                         body("_id", equalTo(validId)).
                         body("baslik", notNullValue()).
+                        time(lessThan(1000L)).
                         extract().response();
 
         long responseTime = response.time();
@@ -44,12 +47,12 @@ public class SampleApiTest {
     @Test
     public void testCreatePost() {
         String requestBody = """
-        {
-          "kullaniciId": "38443790974",
-          "sifre": "ege"
-        
-        }
-        """;
+                {
+                  "kullaniciId": "38443790974",
+                  "sifre": "ege"
+                
+                }
+                """;
 
         Response response =
                 given().
@@ -65,6 +68,7 @@ public class SampleApiTest {
                         contentType(ContentType.JSON).
                         body("message", equalTo("Giriş Başarılı")).
                         body("token", notNullValue()).
+                        time(lessThan(1000L)).
                         extract().response();
 
         long responseTime = response.time();
